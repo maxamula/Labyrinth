@@ -1,0 +1,9 @@
+﻿  Graph.cpp
+  GraphEditor.cpp
+  The contents of <optional> are available only with C++17 or later.
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\GraphEditor.cpp(183,46): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\GraphEditor.cpp(184,46): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\GraphEditor.cpp(230,19): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\GraphEditor.cpp(231,19): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+  Создание кода...
+  Labyrinth.vcxproj -> C:\Users\nullptr\source\repos\Labyrinth\x64\Debug\Labyrinth.exe
