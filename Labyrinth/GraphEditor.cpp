@@ -5,12 +5,13 @@
 //Global 
 List<GraphVertex*> vertices;
 
-GraphVertex* bindingVertex;
+GraphVertex* bindingVertex = NULL;
+GraphVertex* translatingVertex = NULL;
 BYTE oldType;
 bool bBindingFlag = false;  // If false: OnKeyPressed set binding vertex, if true: bind vertex with bindingVertex
+bool bTranslatingFlag = false;
 
 bool bDrawThread = true;	// Flag to stop thread
-bool bKeyThread = true;
 
 
 void DrawThread()
@@ -29,123 +30,36 @@ void DrawThread()
 		Update();
 		d3ddev->EndScene();
 		d3ddev->Present(NULL, NULL, NULL, NULL);
-		//Sleep(100);
+		Sleep(10);
 	}
 	bDrawThread = true;
 }
 
 void KeyThread()
 {
-	while (bKeyThread)
-	{
-		if (GetForegroundWindow() == hWnd)
-		{
-			if (GetAsyncKeyState(0x42)) // Bind key
-			{
-				int vertIndex = GetHoverVertex();
-				if (vertIndex != -1)
-				{
-					if (!bBindingFlag)
-					{
-						for (int i = 0; i < vertices.size(); i++)	// Find right vertex by it`s index
-						{
-							if (vertices[i]->GetIndex() == vertIndex)
-							{
-								oldType = vertices[i]->GetType();				// save old vertex type
-								vertices[i]->SetType(VERTEX_TYPE_BINDING);		// Set vertex type
-								bindingVertex = vertices[i];					// Set binding vertex
-								bBindingFlag = !bBindingFlag;					// Change binding flag
-							}
-						}
-					}
-					else
-					{
-						for (int i = 0; i < vertices.size(); i++)	// Find right vertex by it`s index
-						{
-							if (vertices[i]->GetIndex() == vertIndex)
-							{
-								if (vertices[i] == bindingVertex)		// If vertex chosen twice: change vertex type to old, change flag back
-								{
-									vertices[i]->SetType(oldType);
-									bBindingFlag = !bBindingFlag;
-								}
-								else
-								{
-									Bind(graph ,vertices[i]);					// Bind vertices
-									bindingVertex->SetType(oldType);
-									bBindingFlag = !bBindingFlag;
-								}	
-							}
-						}
-					}
-				}
-			}
+	
 			
+}
 
-
-			if (GetAsyncKeyState(0x41))	// Set exit Key
-			{
-				int vertIndex = GetHoverVertex();
-				if (vertIndex != -1)
-				{
-					for (int i = 0; i < vertices.size(); i++)	// Find right vertex by it`s index
-					{
-						if (vertices[i]->GetIndex() == vertIndex)
-						{
-							// Todo: recalculate buttons table
-							// add exit matrix
-							// recalculate exit matrix
-							vertices[i]->SetType(VERTEX_TYPE_EXIT);
-						}
-					}
-				}
-			}
-
-			if (GetAsyncKeyState(0x53))	// Set room Key
-			{
-				int vertIndex = GetHoverVertex();
-				if (vertIndex != -1)
-				{
-					for (int i = 0; i < vertices.size(); i++)	// Find right vertex by it`s index
-					{
-						if (vertices[i]->GetIndex() == vertIndex)
-						{
-							// Todo: recalculate buttons table
-							//	remove exit vertex from exit matrix
-							vertices[i]->SetType(VERTEX_TYPE_ROOM);
-						}
-					}
-				}
-			}
-
-			if (GetAsyncKeyState(0x44))	// Set Entrance Key
-			{
-				int vertIndex = GetHoverVertex();
-				if (vertIndex != -1)
-				{
-					for (int i = 0; i < vertices.size(); i++)	// Find right vertex by it`s index
-					{
-						if (vertices[i]->GetIndex() == vertIndex)
-						{
-							// Todo: recalculate buttons table
-							// remove exit vertex from exit matrix 
-							// recalculate entrance matrix
-							vertices[i]->SetType(VERTEX_TYPE_ENTRANCE);
-						}
-					}
-				}
-			}
-
-		}
-		Sleep(150);
-	}	
-	bKeyThread = true;
+void ExitThreads()
+{
+	bDrawThread = false;
+	while (!bDrawThread)
+		Sleep(50);
 }
 
 void Update()
 {
 	LPD3DXFONT pFont = 0;
 	D3DXCreateFont(d3ddev, 18, 0, FW_BOLD, 0, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, TEXT("Arial"), &pFont);
+
+	if (bTranslatingFlag)
+	{
+		POINT pos;
+		GetCursorPos(&pos);
+		ScreenToClient(hWnd, &pos);
+		translatingVertex->SetLocation(pos.x, pos.y);
+	}
 
 	for (int v = 0; v < vertices.size(); v++)
 	{
@@ -179,7 +93,6 @@ void Update()
 				}
 			}
 		}
-
 
 		VERTEX verts[16 + 1];
 
@@ -246,7 +159,7 @@ void InitVertices(Graph* graph)
 		vertIndex++;							// Increase vertex index by 1
 
 		RECT rect{ 0, 0, x + 10, y + 10 };
-		pFont->DrawTextW(NULL, L"10", 2, &rect, DT_BOTTOM | DT_RIGHT, D3DCOLOR_XRGB(255, 255, 255));
+		pFont->DrawTextW(NULL, L"00", 2, &rect, DT_BOTTOM | DT_RIGHT, D3DCOLOR_XRGB(255, 255, 255));
 		if (count <= 32)
 		{
 			if (v < 0.25f * count)

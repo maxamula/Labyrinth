@@ -47,7 +47,10 @@ int  WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpszArgs, in
     {
         DispatchMessage(&msg);
         
-    }       
+    }   
+    ExitThreads();
+    d3ddev->Release();
+    d3d->Release();
     return 0;
 }
 
@@ -55,6 +58,122 @@ int  WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpszArgs, in
 LRESULT CALLBACK WindowFunc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) 
 {
     switch (message) {
+    case WM_KEYDOWN:
+
+		if (wParam == 0x42) // Bind key
+		{
+			int vertIndex = GetHoverVertex();
+			if (vertIndex != -1)
+			{
+				if (!bBindingFlag)
+				{
+					for (int i = 0; i < vertices.size(); i++)	// Find right vertex by it`s index
+					{
+						if (vertices[i]->GetIndex() == vertIndex)
+						{
+							oldType = vertices[i]->GetType();				// save old vertex type
+							vertices[i]->SetType(VERTEX_TYPE_BINDING);		// Set vertex type
+							bindingVertex = vertices[i];					// Set binding vertex
+							bBindingFlag = !bBindingFlag;					// Change binding flag
+						}
+					}
+				}
+				else
+				{
+					for (int i = 0; i < vertices.size(); i++)	// Find right vertex by it`s index
+					{
+						if (vertices[i]->GetIndex() == vertIndex)
+						{
+							if (vertices[i] == bindingVertex)		// If vertex chosen twice: change vertex type to old, change flag back
+							{
+								vertices[i]->SetType(oldType);
+								bBindingFlag = !bBindingFlag;
+							}
+							else
+							{
+								Bind(graph, vertices[i]);					// Bind vertices
+								bindingVertex->SetType(oldType);
+								bBindingFlag = !bBindingFlag;
+							}
+						}
+					}
+				}
+			}
+		}
+
+
+
+		if (wParam == 0x41)	// Set exit Key
+		{
+			int vertIndex = GetHoverVertex();
+			if (vertIndex != -1)
+			{
+				for (int i = 0; i < vertices.size(); i++)	// Find right vertex by it`s index
+				{
+					if (vertices[i]->GetIndex() == vertIndex)
+					{
+						if (vertices[i]->GetType() != VERTEX_TYPE_EXIT)
+						{
+							graph->exits.addLast(vertIndex);
+							vertices[i]->SetType(VERTEX_TYPE_EXIT);
+						}
+					}
+				}
+			}
+		}
+
+		if (wParam == 0x53)	// Set room Key
+		{
+			int vertIndex = GetHoverVertex();
+			if (vertIndex != -1)
+			{
+				for (int i = 0; i < vertices.size(); i++)	// Find right vertex by it`s index
+				{
+					if (vertices[i]->GetIndex() == vertIndex)
+					{
+						graph->exits.Remove(vertIndex);
+						vertices[i]->SetType(VERTEX_TYPE_ROOM);
+					}
+				}
+			}
+		}
+
+		if (wParam == 0x44)	// Set Entrance Key
+		{
+			int vertIndex = GetHoverVertex();
+			if (vertIndex != -1)
+			{
+				for (int i = 0; i < vertices.size(); i++)	// Find right vertex by it`s index
+				{
+					if (vertices[i]->GetIndex() == vertIndex)
+					{
+						for (int j = 0; j < vertices.size(); j++)
+						{
+							if (vertices[j]->GetType() == VERTEX_TYPE_ENTRANCE)
+							{
+								vertices[j]->SetType(VERTEX_TYPE_ROOM);
+								break;
+							}
+						}
+						vertices[i]->SetType(VERTEX_TYPE_ENTRANCE);
+					}
+				}
+			}
+		}
+        break;
+	case WM_LBUTTONDOWN:
+		if (GetHoverVertex() != -1)
+		{
+			if (!bTranslatingFlag)
+			{
+				translatingVertex = vertices[GetHoverVertex()];
+				bTranslatingFlag = true;
+			}
+		}
+		break;
+	case WM_LBUTTONUP:
+		bTranslatingFlag = false;
+		break;
     case WM_DESTROY:
         PostQuitMessage(0);
         break;

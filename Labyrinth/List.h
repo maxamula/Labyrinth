@@ -27,7 +27,9 @@ public:
 		{
 			T* pData = (T*)malloc(m_capacity * 2 * sizeof(T)); //alloc new mem region
 			memcpy(pData, m_data, m_capacity * sizeof(T)); //copy old data
-			free(m_data); //release old memory
+			T* oData = m_data;
+			m_data = pData;
+			//free(oData); //release old memory
 			m_capacity *= 2;
 			m_data = pData;
 		}
@@ -85,6 +87,31 @@ public:
 		{
 			for (int i = 0; i < m_size; i++)
 				m_data[i] = m_data[i + 1];
+		}
+	}
+
+	void Remove(T item)
+	{
+		for (int i = 0; i < m_size; i++)
+		{
+			if (this->operator[](i) == item)
+			{
+				if (m_capacity == (m_size-1)* 2)
+				{
+					T* pData = (T*)malloc((m_capacity / 2) * sizeof(T));
+					memcpy(pData, m_data, (i)*sizeof(T));
+					memcpy(&pData[i], &m_data[i+1], (m_size - i + 1) * sizeof(T));
+					free(m_data);
+					m_size --;
+					m_capacity /= 2;
+					m_data = pData;
+				}
+				else
+				{
+					memcpy(&m_data[i], &m_data[i+1], (m_size-i) * sizeof(T));
+					m_size--;
+				}
+			}
 		}
 	}
 

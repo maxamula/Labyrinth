@@ -8,6 +8,14 @@
 
 #include <stdio.h> //for swprintf_s
 
+extern List<GraphVertex*> vertices;
+
+extern GraphVertex* bindingVertex;
+extern GraphVertex* translatingVertex;
+extern BYTE oldType;
+extern bool bBindingFlag;
+extern bool bTranslatingFlag;
+
 
 void DrawTread();				// Main drawing routine
 void KeyThread();				// Key state checking routine

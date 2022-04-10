@@ -6,8 +6,10 @@
 #include "MainWindow.h"
 
 
+void Help();
+
 // Global vars 
-Graph* graph = new Graph(50);
+Graph* graph;
 
 int g_vertices;
 Table<int, List<int>> buttons;
@@ -16,25 +18,32 @@ Table<int, List<int>> buttons;
 
 int main()
 {
+	VerticesInput:
 	std::cout << "Enter number of graph vertices" << std::endl;
-	int vertices;
-	std::cin >> vertices;
+	int iVertices;
+	std::cin >> iVertices;
+	if (iVertices >= 4 && iVertices <= 45)
+		graph = new Graph(iVertices);
+	else
+	{
+		std::cout << "Number must be betwen 4 and 55" << std::endl;
+		goto VerticesInput;
+	}	
+	system("cls");
+	Help();
 	WinMain(0, 0, 0, 0);
-	
+	graph->exits.Sort();
+	for (int i = 0; i < graph->exits.size(); i++)
+	{
+		std::cout << graph->exits[i] << std::endl;
+	}
 }
 
-bool Labyrinth::SetVertices(int vertices, int entrances)
+void Help()
 {
-	if (entrances > vertices)
-		return false;
-	m_entrances = entrances;
-	m_vertices = vertices;
-	std::random_device rd;
-	std::uniform_int_distribution<int> rndVert(0, vertices);
-	std::uniform_int_distribution<int> distr(15, 25);
-	/*for (int entr = 0; entr < m_entrances; entr++)
-	{
-		List<int> btn;
-		for()
-	}*/
+	std::cout << "\"b\" - bind vertices" << std::endl;
+	std::cout << "\"a\" - set vertex as exit" << std::endl;
+	std::cout << "\"s\" - set vertex as normal" << std::endl;
+	std::cout << "\"d\" - set vertex as entrance" << std::endl;
+	std::cout << "\"q\" - translate vertex" << std::endl;
 }

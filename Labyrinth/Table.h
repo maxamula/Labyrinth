@@ -70,21 +70,6 @@ public:
 			}
 		}
 	}
-	
-
-	V& operator[](K key)						// set value
-	{
-		for (int i = 0; i < nodes.size(); i++)
-		{
-			if (nodes[i]->key == key)
-			{
-				return nodes[i]->value;
-			}
-		}
-		Node<K, V>* pNewNode = new Node<K, V>(key);
-		this->nodes.addLast(pNewNode);
-		return pNewNode->value;
-	}
 
 private:
 	List<Node<K, V>*> nodes;
