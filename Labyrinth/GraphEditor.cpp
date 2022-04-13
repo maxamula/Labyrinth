@@ -7,9 +7,11 @@ List<GraphVertex*> vertices;
 
 GraphVertex* bindingVertex = NULL;
 GraphVertex* translatingVertex = NULL;
+GraphVertex* trapVertex;
 BYTE oldType;
 bool bBindingFlag = false;  // If false: OnKeyPressed set binding vertex, if true: bind vertex with bindingVertex
 bool bTranslatingFlag = false;
+bool bTrapFlag = false;
 
 bool bDrawThread = true;	// Flag to stop thread
 
@@ -35,11 +37,6 @@ void DrawThread()
 	bDrawThread = true;
 }
 
-void KeyThread()
-{
-	
-			
-}
 
 void ExitThreads()
 {
@@ -89,7 +86,27 @@ void Update()
 			{
 				if (graph->adjMatrix[i][j])
 				{ 
-					DrawLine(vertices[i]->GetLocation().x, vertices[i]->GetLocation().y, vertices[j]->GetLocation().x, vertices[j]->GetLocation().y);	// Draw line for each edge
+					POINT vec{ vertices[j]->GetLocation().x - vertices[i]->GetLocation().x , vertices[j]->GetLocation().y - vertices[i]->GetLocation().y };
+
+					//Display edge trap chance
+					if (graph->trapMatrix[i][j] != 0)
+					{
+						RECT chanceRect{ 0, 0, vertices[j]->GetLocation().x - vec.x / 2, vertices[j]->GetLocation().y - vec.y / 2 };
+						WCHAR szChance[5];
+						swprintf_s(szChance, L"%d", graph->trapMatrix[i][j]);
+						WCHAR* str = StrCatW(szChance, L"%");
+						pFont->DrawTextW(NULL, szChance, wcslen(szChance), &chanceRect, DT_BOTTOM | DT_RIGHT, D3DCOLOR_XRGB(0, 0, 255));
+					}
+					
+					// Draw edges
+					float a = SetLength(vec.x, vec.y, 20);
+					vec.x = vec.x * a;
+					vec.y = vec.y * a;
+					POINT vec2{ vertices[i]->GetLocation().x - vertices[j]->GetLocation().x , vertices[i]->GetLocation().y - vertices[j]->GetLocation().y };
+					vec2.x = vec2.x * a;
+					vec2.y = vec2.y * a;
+					DrawArrow(vertices[i]->GetLocation().x - vec2.x, vertices[i]->GetLocation().y - vec2.y, vertices[j]->GetLocation().x - vec.x, vertices[j]->GetLocation().y - vec.y);
+					DrawLine(vertices[i]->GetLocation().x - vec2.x, vertices[i]->GetLocation().y - vec2.y, vertices[j]->GetLocation().x - vec.x, vertices[j]->GetLocation().y - vec.y);	// Draw line for each edge
 				}
 			}
 		}
@@ -153,8 +170,14 @@ void InitVertices(Graph* graph)
 		}
 		d3ddev->SetFVF(VERTEX::FVF);
 		d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 16, &verts, sizeof(VERTEX));
-
+		
 		GraphVertex* gVert = new GraphVertex(vertIndex, x, y);
+		for (int i = 0; i < graph->exits.size(); i++)
+		{
+			int ass = graph->exits[i];
+			if (vertIndex == ass)
+				gVert->SetType(VERTEX_TYPE_EXIT);
+		}
 		vertices.addLast(gVert);				// Save vertex
 		vertIndex++;							// Increase vertex index by 1
 

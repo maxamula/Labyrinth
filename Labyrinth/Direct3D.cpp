@@ -1,6 +1,8 @@
 #include "Direct3D.h"
 #include <iostream>
 
+#define PI 3.14159265359
+
 // Global declarations
 LPDIRECT3D9 d3d;
 LPDIRECT3DDEVICE9 d3ddev;
@@ -34,4 +36,59 @@ void DrawLine(int x1, int y1, int x2, int y2)
 	
 	d3ddev->SetFVF(VERTEX::FVF);
 	d3ddev->DrawPrimitiveUP(D3DPT_LINELIST, 2, &verts, sizeof(VERTEX));
+}
+
+struct Vec
+{
+	float x, y;
+};
+
+const int nWidth = 15;
+
+void DrawArrow(int xf, int yf, int xt, int yt)
+{
+	Vec linevec{ xt - xf, yt - yf };
+	float linelen = sqrt(pow(linevec.x, 2) + pow(linevec.y, 2));
+	float tPointOnLine = nWidth / (2 * (tanf(0.52f) / 2) * linelen);
+	POINT pointonline;
+	pointonline.x = xt + (-tPointOnLine * linevec.x);
+	pointonline.y = yt + (-tPointOnLine * linevec.y);
+
+	Vec normvec{ -linevec.y, linevec.x };
+	float tNormal = nWidth / (2 * linelen);
+	POINT left;
+	left.x = pointonline.x + tNormal * normvec.x;
+	left.y = pointonline.y + tNormal * normvec.y;
+	POINT right;
+	right.x = pointonline.x + (-tNormal * normvec.x);
+	right.y = pointonline.y + (-tNormal * normvec.y);
+
+	VERTEX verts[3];
+
+	verts[0].x = xt;
+	verts[0].y = yt;
+	verts[0].z = 0;
+	verts[0].rhw = 1;
+	verts[0].color = D3DCOLOR_XRGB(0, 0, 0);
+
+	verts[1].x = left.x;
+	verts[1].y = left.y;
+	verts[1].z = 0;
+	verts[1].rhw = 1;
+	verts[1].color = D3DCOLOR_XRGB(0, 0, 0);
+
+	verts[2].x = right.x;
+	verts[2].y = right.y;
+	verts[2].z = 0;
+	verts[2].rhw = 1;
+	verts[2].color = D3DCOLOR_XRGB(0, 0, 0);
+
+	d3ddev->SetFVF(VERTEX::FVF);
+	d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLELIST, 3, &verts, sizeof(VERTEX));
+}
+
+float SetLength(int x, int y, int len)
+{
+	float a = (len * sqrt(pow(x, 2) + pow(y, 2))) / (pow(x, 2) + pow(y, 2));
+	return a;
 }

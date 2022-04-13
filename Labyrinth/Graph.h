@@ -11,8 +11,9 @@ public:
 	~Graph();
 public:
 	bool** adjMatrix;
+	int** trapMatrix;
+	int entrance = -1;
 	List<index> exits;
-	List<index> entrances;
 
 
 	int GetVerticesCount();

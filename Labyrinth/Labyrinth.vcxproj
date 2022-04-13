@@ -85,6 +85,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\dxlib\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\dxlib\Lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -145,6 +147,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Direct3D.cpp" />
+    <ClCompile Include="File.cpp" />
     <ClCompile Include="Graph.cpp" />
     <ClCompile Include="GraphEditor.cpp" />
     <ClCompile Include="GraphVertex.cpp" />
@@ -156,6 +159,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Direct3D.h" />
+    <ClInclude Include="File.h" />
     <ClInclude Include="Graph.h" />
     <ClInclude Include="GraphEditor.h" />
     <ClInclude Include="GraphVertex.h" />

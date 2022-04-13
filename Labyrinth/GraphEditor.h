@@ -6,19 +6,21 @@
 #include "Graph.h"
 #include "Direct3D.h"
 
-#include <stdio.h> //for swprintf_s
+#include <stdio.h>	 // swprintf_s
+#include <shlwapi.h> // StrCatW
 
 extern List<GraphVertex*> vertices;
 
 extern GraphVertex* bindingVertex;
 extern GraphVertex* translatingVertex;
+extern GraphVertex* trapVertex;
 extern BYTE oldType;
 extern bool bBindingFlag;
 extern bool bTranslatingFlag;
+extern bool bTrapFlag;
 
 
 void DrawTread();				// Main drawing routine
-void KeyThread();				// Key state checking routine
 void ExitThreads();				// Stops both threads
 
 

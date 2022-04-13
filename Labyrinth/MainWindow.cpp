@@ -40,13 +40,11 @@ int  WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpszArgs, in
     
    
     CloseHandle(CreateThread(0, 0, (LPTHREAD_START_ROUTINE)DrawThread, 0, 0, 0));
-    CloseHandle(CreateThread(0, 0, (LPTHREAD_START_ROUTINE)KeyThread, 0, 0, 0));
 
 
     while (GetMessage(&msg, NULL, 0, 0))
     {
         DispatchMessage(&msg);
-        
     }   
     ExitThreads();
     d3ddev->Release();
@@ -108,7 +106,7 @@ LRESULT CALLBACK WindowFunc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPara
 			int vertIndex = GetHoverVertex();
 			if (vertIndex != -1)
 			{
-				for (int i = 0; i < vertices.size(); i++)	// Find right vertex by it`s index
+				for (int i = 0; i < vertices.size(); i++)
 				{
 					if (vertices[i]->GetIndex() == vertIndex)
 					{
@@ -127,7 +125,7 @@ LRESULT CALLBACK WindowFunc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPara
 			int vertIndex = GetHoverVertex();
 			if (vertIndex != -1)
 			{
-				for (int i = 0; i < vertices.size(); i++)	// Find right vertex by it`s index
+				for (int i = 0; i < vertices.size(); i++)
 				{
 					if (vertices[i]->GetIndex() == vertIndex)
 					{
@@ -143,7 +141,7 @@ LRESULT CALLBACK WindowFunc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPara
 			int vertIndex = GetHoverVertex();
 			if (vertIndex != -1)
 			{
-				for (int i = 0; i < vertices.size(); i++)	// Find right vertex by it`s index
+				for (int i = 0; i < vertices.size(); i++)
 				{
 					if (vertices[i]->GetIndex() == vertIndex)
 					{
@@ -155,7 +153,53 @@ LRESULT CALLBACK WindowFunc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPara
 								break;
 							}
 						}
+						graph->exits.Remove(vertIndex);
+						graph->entrance = vertIndex;
 						vertices[i]->SetType(VERTEX_TYPE_ENTRANCE);
+					}
+				}
+			}
+		}
+
+		if (wParam == 0x58) // Set trap key
+		{
+			int vertIndex = GetHoverVertex();
+			if (vertIndex != -1)
+			{
+				if (!bTrapFlag)
+				{
+					for (int i = 0; i < vertices.size(); i++)
+					{
+						if (vertices[i]->GetIndex() == vertIndex)
+						{
+							oldType = vertices[i]->GetType();
+							vertices[i]->SetType(VERTEX_TYPE_BINDING);
+							trapVertex = vertices[i];
+							bTrapFlag = !bTrapFlag;	
+						}
+					}
+				}
+				else
+				{
+					for (int i = 0; i < vertices.size(); i++)
+					{
+						if (vertices[i]->GetIndex() == vertIndex)
+						{
+							if (vertices[i] == bindingVertex)
+							{
+								vertices[i]->SetType(oldType);
+								bTrapFlag = !bTrapFlag;
+							}
+							else
+							{
+								std::cout << "Enter the value:" << std::endl;
+								int chance = 0;
+								std::cin >> chance;
+								graph->trapMatrix[trapVertex->GetIndex()][i] = chance;
+								trapVertex->SetType(oldType);
+								bTrapFlag = !bTrapFlag;
+							}
+						}
 					}
 				}
 			}

@@ -13,12 +13,16 @@ public:
 	GraphVertex(int index, int x, int y);
 	~GraphVertex();
 public:
+	float GetTrapChance();
+	void SetTrapChance();
 	int GetIndex();
 	void SetType(BYTE type);
 	BYTE GetType();
 
 private:
 	int m_index;		// vertex index in graph matrix
+	float m_fTrapChance = 0;
 	BYTE m_bType;		// entrance/exit/room vertex type
+	bool m_bHasTrap;	// true if edge contains trap
 };
 

@@ -12,6 +12,15 @@ Graph::Graph(int vertCount)
 	}
 	adjMatrix = ppRow;
 
+	int** trapMatrix = (int**)malloc(vertCount * sizeof(int*)); //hold pointers to rows
+	for (int i = 0; i < vertCount; i++)
+	{
+		trapMatrix[i] = (int*)malloc(vertCount * sizeof(int));
+		for (int j = 0; j < vertCount; j++)
+			trapMatrix[i][j] = 1 + rand() % 40;
+	}
+	this->trapMatrix = trapMatrix;
+
 }
 
 Graph::~Graph()

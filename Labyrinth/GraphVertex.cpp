@@ -28,3 +28,8 @@ int GraphVertex::GetIndex()
 {
 	return m_index;
 }
+
+float GraphVertex::GetTrapChance()
+{
+	return m_fTrapChance;
+}

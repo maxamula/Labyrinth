@@ -1,7 +1,7 @@
-﻿  GraphEditor.cpp
+﻿  File.cpp
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\File.cpp(17,16): warning C4244: инициализация: преобразование "std::streamoff" в "int", возможна потеря данных
+  Labyrinth.cpp
   The contents of <optional> are available only with C++17 or later.
-C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\GraphEditor.cpp(101,46): warning C4244: =: преобразование "double" в "float", возможна потеря данных
-C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\GraphEditor.cpp(102,46): warning C4244: =: преобразование "double" в "float", возможна потеря данных
-C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\GraphEditor.cpp(148,19): warning C4244: =: преобразование "double" в "float", возможна потеря данных
-C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\GraphEditor.cpp(149,19): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+  Создание кода...
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\Table.h(72): warning C4715: Table<int,List<int> *>::Get: значение возвращается не при всех путях выполнения
   Labyrinth.vcxproj -> C:\Users\nullptr\source\repos\Labyrinth\x64\Debug\Labyrinth.exe

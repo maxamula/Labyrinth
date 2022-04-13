@@ -48,6 +48,9 @@
     <ClCompile Include="GraphVertex.cpp">
       <Filter>Исходные файлы\GUI</Filter>
     </ClCompile>
+    <ClCompile Include="File.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Table.h">
@@ -76,6 +79,9 @@
     </ClInclude>
     <ClInclude Include="GraphVertex.h">
       <Filter>Файлы заголовков\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="File.h">
+      <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

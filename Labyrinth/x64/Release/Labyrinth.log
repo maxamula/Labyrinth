@@ -1,0 +1,48 @@
+﻿  Direct3D.cpp
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\Direct3D.cpp(25,15): warning C4244: =: преобразование "int" в "float", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\Direct3D.cpp(26,15): warning C4244: =: преобразование "int" в "float", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\Direct3D.cpp(31,15): warning C4244: =: преобразование "int" в "float", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\Direct3D.cpp(32,15): warning C4244: =: преобразование "int" в "float", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\Direct3D.cpp(50,18): warning C4838: Преобразование из "int" в "float" требует сужающего преобразования.
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\Direct3D.cpp(50,18): warning C4244: инициализация: преобразование "int" в "float", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\Direct3D.cpp(50,27): warning C4838: Преобразование из "int" в "float" требует сужающего преобразования.
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\Direct3D.cpp(50,27): warning C4244: инициализация: преобразование "int" в "float", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\Direct3D.cpp(51,16): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\Direct3D.cpp(54,21): warning C4244: =: преобразование "float" в "LONG", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\Direct3D.cpp(55,21): warning C4244: =: преобразование "float" в "LONG", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\Direct3D.cpp(60,25): warning C4244: =: преобразование "float" в "LONG", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\Direct3D.cpp(61,25): warning C4244: =: преобразование "float" в "LONG", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\Direct3D.cpp(63,26): warning C4244: =: преобразование "float" в "LONG", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\Direct3D.cpp(64,26): warning C4244: =: преобразование "float" в "LONG", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\Direct3D.cpp(68,15): warning C4244: =: преобразование "int" в "float", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\Direct3D.cpp(69,15): warning C4244: =: преобразование "int" в "float", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\Direct3D.cpp(74,19): warning C4244: =: преобразование "LONG" в "float", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\Direct3D.cpp(75,19): warning C4244: =: преобразование "LONG" в "float", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\Direct3D.cpp(80,20): warning C4244: =: преобразование "LONG" в "float", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\Direct3D.cpp(81,20): warning C4244: =: преобразование "LONG" в "float", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\Direct3D.cpp(92,10): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
+  Graph.cpp
+  GraphEditor.cpp
+  The contents of <optional> are available only with C++17 or later.
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\GraphEditor.cpp(94,20): warning C4244: =: преобразование "float" в "LONG", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\GraphEditor.cpp(95,20): warning C4244: =: преобразование "float" в "LONG", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\GraphEditor.cpp(97,22): warning C4244: =: преобразование "float" в "LONG", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\GraphEditor.cpp(98,22): warning C4244: =: преобразование "float" в "LONG", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\GraphEditor.cpp(109,46): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\GraphEditor.cpp(110,46): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\GraphEditor.cpp(156,19): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\GraphEditor.cpp(157,19): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+  GraphVertex.cpp
+  Labyrinth.cpp
+  The contents of <optional> are available only with C++17 or later.
+  List.cpp
+  MainWindow.cpp
+  The contents of <optional> are available only with C++17 or later.
+  RoundButton.cpp
+  Table.cpp
+  The contents of <optional> are available only with C++17 or later.
+  Previous IPDB not found, fall back to full compilation.
+  Создание кода
+  All 64 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Создание кода завершено
+  Labyrinth.vcxproj -> C:\Users\nullptr\source\repos\Labyrinth\x64\Release\Labyrinth.exe

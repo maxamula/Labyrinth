@@ -15,6 +15,16 @@ public:
 		free(m_data); //release mem space
 	}
 
+	T* data()
+	{
+		return m_data;
+	}
+
+	int cap()
+	{
+		return m_capacity;
+	}
+
 	int size()
 	{
 		return m_size;
@@ -29,7 +39,7 @@ public:
 			memcpy(pData, m_data, m_capacity * sizeof(T)); //copy old data
 			T* oData = m_data;
 			m_data = pData;
-			//free(oData); //release old memory
+			free(oData); //release old memory
 			m_capacity *= 2;
 			m_data = pData;
 		}
@@ -100,7 +110,7 @@ public:
 				{
 					T* pData = (T*)malloc((m_capacity / 2) * sizeof(T));
 					memcpy(pData, m_data, (i)*sizeof(T));
-					memcpy(&pData[i], &m_data[i+1], (m_size - i + 1) * sizeof(T));
+ 					memcpy(&pData[i], &m_data[i+1], (m_size - i - 1) * sizeof(T));
 					free(m_data);
 					m_size --;
 					m_capacity /= 2;

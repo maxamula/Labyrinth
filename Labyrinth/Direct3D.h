@@ -11,6 +11,9 @@ extern LPDIRECT3DDEVICE9 d3ddev;
 void InitD3D(HWND hWnd);
 
 void DrawLine(int x1, int y1, int x2, int y2);
+void DrawArrow(int x1, int y1, int x2, int y2);
+
+float SetLength(int x, int y, int len);
 
 struct VERTEX {
     float x, y, z, rhw;
