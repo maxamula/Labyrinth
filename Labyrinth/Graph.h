@@ -1,8 +1,9 @@
 #pragma once
 #include "List.h"
+#include "Edge.h"
+#include "Table.h"
 #include <cstdlib>
 
-typedef int index;
 
 class Graph
 {
@@ -11,16 +12,14 @@ public:
 	~Graph();
 public:
 	bool** adjMatrix;
-	int** trapMatrix;
-	int entrance = -1;
-	List<index> exits;
+	BYTE** trapMatrix;					// TODO: replace trap matrix by trap table
+	Table<Edge, BYTE> traps;
+	char entrance = -1;
+	List<BYTE> exits;	
 
-
-	int GetVerticesCount();
-	int GetEdgesCount();
+	BYTE GetVerticesCount();
 private:
-	int m_vertices;
-	int m_edges;
+	BYTE m_vertices;
 };
 
 

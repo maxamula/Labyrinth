@@ -42,7 +42,7 @@ void ExitThreads()
 {
 	bDrawThread = false;
 	while (!bDrawThread)
-		Sleep(50);
+		Sleep(1);
 }
 
 void Update()
@@ -89,11 +89,11 @@ void Update()
 					POINT vec{ vertices[j]->GetLocation().x - vertices[i]->GetLocation().x , vertices[j]->GetLocation().y - vertices[i]->GetLocation().y };
 
 					//Display edge trap chance
-					if (graph->trapMatrix[i][j] != 0)
+					if (graph->traps.Get(Edge(i, j)) != 0)
 					{
 						RECT chanceRect{ 0, 0, vertices[j]->GetLocation().x - vec.x / 2, vertices[j]->GetLocation().y - vec.y / 2 };
 						WCHAR szChance[5];
-						swprintf_s(szChance, L"%d", graph->trapMatrix[i][j]);
+						swprintf_s(szChance, L"%d", graph->traps.Get(Edge(i, j)));
 						WCHAR* str = StrCatW(szChance, L"%");
 						pFont->DrawTextW(NULL, szChance, wcslen(szChance), &chanceRect, DT_BOTTOM | DT_RIGHT, D3DCOLOR_XRGB(0, 0, 255));
 					}
@@ -174,10 +174,11 @@ void InitVertices(Graph* graph)
 		GraphVertex* gVert = new GraphVertex(vertIndex, x, y);
 		for (int i = 0; i < graph->exits.size(); i++)
 		{
-			int ass = graph->exits[i];
-			if (vertIndex == ass)
+			if (vertIndex == graph->exits[i])
 				gVert->SetType(VERTEX_TYPE_EXIT);
 		}
+		if (vertIndex == graph->entrance)
+			gVert->SetType(VERTEX_TYPE_ENTRANCE);
 		vertices.addLast(gVert);				// Save vertex
 		vertIndex++;							// Increase vertex index by 1
 

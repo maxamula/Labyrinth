@@ -1,78 +1,111 @@
 #pragma once
-#include <optional>
 #include "List.h"
 
-template <typename K, typename V>
-class Node
-{
-public:
-	Node(K key, V value)
-	{
-		this->key = key;
-		this->value = value;
-	}
-	Node(K key)
-	{
-		this->key = key;
-		this->value = 0;
-	}
-	~Node()
-	{
-
-	}
-public:
-	K key;
-	V value;
-private:
-
-};
-
-template <typename K, typename V>
+template<typename K, typename V>
 class Table
 {
 public:
+	class Item
+	{
+	public:
+		Item(K key, V val)
+		{
+			this->key = key;
+			this->val = val;			
+		}
+	public:
+		K key;
+		V val;
+	};
+private:
+	Item* m_arr;
+	int m_size;
+	int m_cap;
+public:
 	Table()
 	{
-
+		m_arr = (Item*)malloc(2*sizeof(Item));
+		m_cap = 2;
+		m_size = 0;
 	}
 	~Table()
 	{
-
+		//Clear();
 	}
 public:
-	void Put(K key, V value)
+	int Size()
 	{
-		bool bFlag = false;
-		for (int i = 0; i < nodes.size(); i++)
-		{
-			if (nodes[i]->key == key)
-			{
-				bFlag = true;
-				nodes[i]->value = value;
-				break;
-			}
-		}
+		return m_size;
+	}
 
-		if(!bFlag)
+	void Put(K key, V val)
+	{
+		int index = Search(key);
+		if (index != -1)
 		{
-			Node<K, V>* pNewNode = new Node<K, V>(key, value);
-			this->nodes.addLast(pNewNode);
+			m_arr[index].val = val;
+		}
+		else
+		{
+			m_size++;
+			if (m_size > m_cap)
+				AllocMem(m_cap*2);
+			Item item(key, val);
+			memcpy(&m_arr[m_size-1], &item, sizeof(Item));
 		}
 	}
 
 	V Get(K key)
 	{
-		for (int i = 0; i < nodes.size(); i++)
-		{
-			if (nodes[i]->key == key)
-			{
-				return nodes[i]->value;
-			}
-		}
+		int index = Search(key);
+		if (index != -1)
+			return m_arr[index].val;
+		return NULL;
 	}
 
+	void Remove(K key)
+	{
+		int index = Search(key);
+		if (index == -1)
+			return;
+		for (int i = index; i < m_size - 1; i++)
+		{
+			memcpy(&m_arr[i], &m_arr[i+1], sizeof(Item));
+		}
+		m_size--;
+		if (m_size == m_cap / 2)
+			AllocMem(m_cap / 2);
+	}
+
+	
+
 private:
-	List<Node<K, V>*> nodes;
 
+	bool Compare(K k1, K k2)					// Compare bytes
+	{
+		if (memcmp(&k1, &k2, sizeof(K)) == 0)
+			return true;
+		return false;
+	}
+
+	int Search(K key)							// Returns index of found item
+	{
+		for (int i = 0; i < m_size; i++)
+		{
+			if (Compare(m_arr[i].key, key))
+				return i;
+		}
+
+		return -1;
+	}
+
+	void AllocMem(int cap)
+	{
+		if (cap < m_size)
+			return;
+		Item* newmem = (Item*)malloc(cap * sizeof(Item));
+		memcpy(newmem, m_arr, (m_size-1) * sizeof(Item));
+		free(m_arr);
+		m_arr = newmem;
+	}
 };
-

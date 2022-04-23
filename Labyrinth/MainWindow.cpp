@@ -193,11 +193,23 @@ LRESULT CALLBACK WindowFunc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPara
 							else
 							{
 								std::cout << "Enter the value:" << std::endl;
-								int chance = 0;
-								std::cin >> chance;
-								graph->trapMatrix[trapVertex->GetIndex()][i] = chance;
-								trapVertex->SetType(oldType);
-								bTrapFlag = !bTrapFlag;
+								int iChance = 0;
+								std::cin >> iChance;
+								BYTE chance = (BYTE)iChance;
+								if (chance != 0)
+								{
+									if (chance > 100)
+										chance = 100;
+									graph->traps.Put(Edge(trapVertex->GetIndex(), vertices[i]->GetIndex()), chance);
+									trapVertex->SetType(oldType);
+									bTrapFlag = !bTrapFlag;
+								}
+								else
+								{
+									graph->traps.Remove(Edge(trapVertex->GetIndex(), vertices[i]->GetIndex()));
+									trapVertex->SetType(oldType);
+									bTrapFlag = !bTrapFlag;
+								}
 							}
 						}
 					}

@@ -10,20 +10,23 @@ public:
 		m_data = (T*)malloc(2 * sizeof(T));
 	}
 
+	List(char* buf)
+	{
+		memcpy(&m_size, buf, 4);
+		int capacity = 2;
+		while (m_size > capacity)
+			capacity *= 2;
+		m_capacity = capacity;
+		m_data = (T*)malloc(capacity * sizeof(T));
+		memcpy(m_data, buf + 4, m_size * sizeof(T));
+	}
+
 	~List()
 	{
 		free(m_data); //release mem space
 	}
 
-	T* data()
-	{
-		return m_data;
-	}
-
-	int cap()
-	{
-		return m_capacity;
-	}
+public:
 
 	int size()
 	{
@@ -129,8 +132,8 @@ public:
 	{
 		if (index >= 0 && index < m_size)
 			return m_data[index];
-		else
-			return NULL;
+		//else
+		//	return NULL;
 	}
 
 	void toArray(T** ppArray)
@@ -174,6 +177,13 @@ public:
 			}
 		}
 		return true;
+	}
+
+	int CopyData(char* buf)
+	{
+		memcpy(buf, &m_size, 4);
+		memcpy(buf + 4, m_data, m_size * sizeof(T));
+		return 4 + (m_size * sizeof(T));
 	}
 
 private:

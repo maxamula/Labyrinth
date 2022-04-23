@@ -1,14 +1,12 @@
 #include "File.h"
 
+#pragma pack(push, 1)																	// Disable structure padding
 struct MAZE_HEADER
 {
-	int verts;
-	int entrance;
-
-	int exSize;
-	int exCapacity;
+	unsigned char verts;					 											// Number of vertices
+	char entrance;																		// Entrance vertex
 };
-
+#pragma pack(pop)
 
 Graph* LoadFromFile(WCHAR* szFilePath)
 {
@@ -29,20 +27,23 @@ Graph* LoadFromFile(WCHAR* szFilePath)
 	Graph* graph = new Graph(pHeader->verts); 
 	
 	// Build graph structure from file	
+	memcpy(&graph->entrance, &pHeader->entrance, sizeof(BYTE));
 
 	// Graph::exits
-	memcpy((void*)((long long int)graph + 0x18), &pHeader->exSize, sizeof(int));		// set list size
-	memcpy((void*)((long long int)graph + 0x1c), &pHeader->exCapacity, sizeof(int));	// set list capacity
-
-	char* pData = (char*)malloc(pHeader->exCapacity * sizeof(int));						// allocate memory 
-	memcpy(pData, (void*)(file + sizeof(MAZE_HEADER)), pHeader->exSize * sizeof(int));	// copy exits list to a new memory cave
-	memcpy((void*)((long long int)graph + 0x20), &pData, sizeof(char*));				// set pointer to data
+	graph->exits = *(new List<BYTE>(file+sizeof(MAZE_HEADER)));
 
 	// Graph::agjMatrix
+	bool** adjMatrix = (bool**)malloc(pHeader->verts*sizeof(bool*));
+	for (int i = 0; i < pHeader->verts; i++)
+	{
+		bool* pRow = (bool*)(file + sizeof(MAZE_HEADER) + *((int*)(file + sizeof(MAZE_HEADER))) + 4 + (i * pHeader->verts));		//2246411D9AC --- 2246411d9ac
+		memcpy(&adjMatrix[i], &pRow, sizeof(bool*));
+	}
+	graph->adjMatrix = adjMatrix;
 
-	// Graph::TrapMatrix
+	// Graph::traps
 
-	free(file);
+
 	input.close();
 	return graph;
 }
@@ -51,20 +52,29 @@ void SaveToFile(Graph* graph, WCHAR* szPath)
 {
 	int offset = 0;
 	char* buf = (char*)malloc(100000);
-	int v = graph->GetVerticesCount();
-	memcpy(buf, &v, 4);
-	offset += 4;
-	memcpy(buf + offset, &graph->entrance, 4);
-	offset += 4;
-	int e = graph->exits.size();
-	memcpy(buf + offset, &e, 4);
-	offset += 4;
-	int cp = graph->exits.cap();
-	memcpy(buf+ offset, &cp, 4);         // offset to capacity
-	offset += 4;
-	memcpy(buf+offset, graph->exits.data(), graph->exits.size()*4);
-	offset += graph->exits.size()*4;
+
+	// Header
+	MAZE_HEADER header;
+	header.verts = graph->GetVerticesCount();
+	header.entrance = graph->entrance;
+	memcpy(buf, &header, sizeof(MAZE_HEADER));
+	offset += sizeof(MAZE_HEADER);
+
+	// Exits list
+	offset += graph->exits.CopyData(buf+offset);
+
+	// AdjMatrix
+	for (int i = 0; i < graph->GetVerticesCount(); i++)
+	{
+		memcpy(buf + offset, graph->adjMatrix[i], graph->GetVerticesCount());
+		offset += graph->GetVerticesCount();
+	}
+
+	// Traps
+	//graph->traps.CopyData(buf+offset, );
+
 	std::fstream output(szPath, std::ios::out | std::ios::binary);
-	output.write(buf, offset+1);
+	output.write(buf, offset);
 	output.close();
+	free(buf);
 }
