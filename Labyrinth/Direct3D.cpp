@@ -2,10 +2,17 @@
 #include <iostream>
 
 #define PI 3.14159265359
+#define NWIDTH 10
+
 
 // Global declarations
 LPDIRECT3D9 d3d;
 LPDIRECT3DDEVICE9 d3ddev;
+
+struct Vec
+{
+	float x, y;
+};
 
 void InitD3D(HWND hWnd)
 {
@@ -38,24 +45,17 @@ void DrawLine(int x1, int y1, int x2, int y2)
 	d3ddev->DrawPrimitiveUP(D3DPT_LINELIST, 2, &verts, sizeof(VERTEX));
 }
 
-struct Vec
-{
-	float x, y;
-};
-
-const int nWidth = 15;
-
 void DrawArrow(int xf, int yf, int xt, int yt)
 {
 	Vec linevec{ xt - xf, yt - yf };
 	float linelen = sqrt(pow(linevec.x, 2) + pow(linevec.y, 2));
-	float tPointOnLine = nWidth / (2 * (tanf(0.52f) / 2) * linelen);
+	float tPointOnLine = NWIDTH / (2 * (tanf(0.52f) / 2) * linelen);
 	POINT pointonline;
 	pointonline.x = xt + (-tPointOnLine * linevec.x);
 	pointonline.y = yt + (-tPointOnLine * linevec.y);
 
 	Vec normvec{ -linevec.y, linevec.x };
-	float tNormal = nWidth / (2 * linelen);
+	float tNormal = NWIDTH / (2 * linelen);
 	POINT left;
 	left.x = pointonline.x + tNormal * normvec.x;
 	left.y = pointonline.y + tNormal * normvec.y;

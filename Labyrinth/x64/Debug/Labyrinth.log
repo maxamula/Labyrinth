@@ -1,2 +1,47 @@
-﻿  Labyrinth.cpp
+﻿  Direct3D.cpp
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\Direct3D.cpp(32,15): warning C4244: =: преобразование "int" в "float", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\Direct3D.cpp(33,15): warning C4244: =: преобразование "int" в "float", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\Direct3D.cpp(38,15): warning C4244: =: преобразование "int" в "float", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\Direct3D.cpp(39,15): warning C4244: =: преобразование "int" в "float", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\Direct3D.cpp(50,18): warning C4838: Преобразование из "int" в "float" требует сужающего преобразования.
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\Direct3D.cpp(50,18): warning C4244: инициализация: преобразование "int" в "float", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\Direct3D.cpp(50,27): warning C4838: Преобразование из "int" в "float" требует сужающего преобразования.
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\Direct3D.cpp(50,27): warning C4244: инициализация: преобразование "int" в "float", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\Direct3D.cpp(51,16): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\Direct3D.cpp(54,21): warning C4244: =: преобразование "float" в "LONG", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\Direct3D.cpp(55,21): warning C4244: =: преобразование "float" в "LONG", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\Direct3D.cpp(60,25): warning C4244: =: преобразование "float" в "LONG", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\Direct3D.cpp(61,25): warning C4244: =: преобразование "float" в "LONG", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\Direct3D.cpp(63,26): warning C4244: =: преобразование "float" в "LONG", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\Direct3D.cpp(64,26): warning C4244: =: преобразование "float" в "LONG", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\Direct3D.cpp(68,15): warning C4244: =: преобразование "int" в "float", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\Direct3D.cpp(69,15): warning C4244: =: преобразование "int" в "float", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\Direct3D.cpp(74,19): warning C4244: =: преобразование "LONG" в "float", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\Direct3D.cpp(75,19): warning C4244: =: преобразование "LONG" в "float", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\Direct3D.cpp(80,20): warning C4244: =: преобразование "LONG" в "float", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\Direct3D.cpp(81,20): warning C4244: =: преобразование "LONG" в "float", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\Direct3D.cpp(92,10): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
+  File.cpp
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\File.cpp(15,16): warning C4244: инициализация: преобразование "std::streamoff" в "int", возможна потеря данных
+  Graph.cpp
+  GraphEditor.cpp
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\GraphEditor.cpp(97,117): warning C4267: аргумент: преобразование из "size_t" в "INT"; возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\GraphEditor.cpp(102,20): warning C4244: =: преобразование "float" в "LONG", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\GraphEditor.cpp(103,20): warning C4244: =: преобразование "float" в "LONG", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\GraphEditor.cpp(105,22): warning C4244: =: преобразование "float" в "LONG", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\GraphEditor.cpp(106,22): warning C4244: =: преобразование "float" в "LONG", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\GraphEditor.cpp(117,46): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\GraphEditor.cpp(118,46): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\GraphEditor.cpp(164,19): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\GraphEditor.cpp(165,19): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+  Labyrinth.cpp
+  MainWindow.cpp
+  Создание кода...
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\List.h(137): warning C4715: List<GraphVertex *>::operator[]: значение возвращается не при всех путях выполнения
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\List.h(137): warning C4715: List<unsigned char>::operator[]: значение возвращается не при всех путях выполнения
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\List.h(137): warning C4715: List<GraphVertex *>::operator[]: значение возвращается не при всех путях выполнения
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\List.h(137): warning C4715: List<unsigned char>::operator[]: значение возвращается не при всех путях выполнения
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\Stack.h(42): warning C4715: Stack<unsigned char>::Get: значение возвращается не при всех путях выполнения
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\List.h(137): warning C4715: List<unsigned char>::operator[]: значение возвращается не при всех путях выполнения
+C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\Stack.h(34): warning C4715: Stack<unsigned char>::Pop: значение возвращается не при всех путях выполнения
   Labyrinth.vcxproj -> C:\Users\nullptr\source\repos\Labyrinth\x64\Debug\Labyrinth.exe

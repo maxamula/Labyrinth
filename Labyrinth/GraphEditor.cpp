@@ -1,5 +1,4 @@
 #include "GraphEditor.h"
-#include <iostream>
 
 
 //Global 
@@ -222,5 +221,5 @@ int GetHoverVertex()
 
 void Bind(Graph* graph, GraphVertex* pVertex)
 {
-	graph->adjMatrix[bindingVertex->GetIndex()][pVertex->GetIndex()] = true;
+	graph->adjMatrix[bindingVertex->GetIndex()][pVertex->GetIndex()] = !graph->adjMatrix[bindingVertex->GetIndex()][pVertex->GetIndex()];
 }

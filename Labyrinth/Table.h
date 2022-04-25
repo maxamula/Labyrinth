@@ -28,9 +28,19 @@ public:
 		m_cap = 2;
 		m_size = 0;
 	}
+	Table(char* buf)
+	{
+		memcpy(&m_size, buf, 4);
+		int capacity = 2;
+		while (m_size > capacity)
+			capacity *= 2;
+		m_cap = capacity;
+		m_arr = (Item*)malloc(capacity * sizeof(Item));
+		memcpy(m_arr, buf + 4, m_size * sizeof(Item));
+	}
 	~Table()
 	{
-		//Clear();
+		free(m_arr);
 	}
 public:
 	int Size()
@@ -77,6 +87,12 @@ public:
 			AllocMem(m_cap / 2);
 	}
 
+	int CopyData(char* buf)
+	{
+		memcpy(buf, &m_size, 4);
+		memcpy(buf + 4, m_arr, m_size * sizeof(Item));
+		return 4 + m_size * sizeof(Item);
+	}
 	
 
 private:

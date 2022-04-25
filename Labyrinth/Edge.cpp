@@ -17,10 +17,3 @@ Edge::~Edge()
 {
 
 }
-
-bool CompareEdges(Edge e1, Edge e2)
-{
-	if (e1.v1 == e2.v1 && e1.v2 == e2.v2)
-		return true;
-	return false;
-}

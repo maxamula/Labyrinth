@@ -1,16 +1,11 @@
 ﻿#pragma comment(lib, "d3d9.lib")
 #pragma comment(lib, "d3dx9.lib")
 #pragma comment(lib, "Shlwapi.lib")
-#include <iostream>
-#include <random>
-#include "Table.h"
 #include "Labyrinth.h"
-#include "MainWindow.h"
 
-#define MAX_FILE_PATH 260
 
+// Func declarations
 void Help();
-void CreateButtonTable();
 
 // Global vars
 Graph* graph;
@@ -24,7 +19,7 @@ int main()
 	if (getchar() == (int)'y')
 	{
 		std::cout << "Enter file path" << std::endl;
-		WCHAR szFilePath[MAX_FILE_PATH];
+		WCHAR szFilePath[MAX_PATH];
 		std::wcin >> szFilePath;
 		//graph = LoadFromFile(szFilePath);
 		graph = LoadFromFile((WCHAR*)L"C:\\Users\\nullptr\\Desktop\\graph.maze");
@@ -41,7 +36,6 @@ int main()
 		std::cout << "Number must be betwen 4 and 55" << std::endl;
 		goto VerticesInput;
 	}	
-
 Edit:
 	system("cls");
 	Help();
@@ -49,7 +43,6 @@ Edit:
 	system("cls");
 	graph->exits.Sort();
 
-	//SaveToFile(graph, (WCHAR*)L"C:\\Users\\nullptr\\Desktop\\graph.maze");
 	if (graph->exits.size() == 0 || graph->entrance == -1)
 	{
 		std::cout << "Invalid input data" << std::endl;
@@ -57,7 +50,9 @@ Edit:
 		exit(1);
 	}
 	
-	
+	int closest = (int)graph->GetClosestExit();
+	std::cout << closest << std::endl;
+
 	system("pause");
 }
 

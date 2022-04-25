@@ -192,3 +192,9 @@ private:
 	T* m_data;
 };
 
+template <typename T, typename V>
+struct Pair
+{
+	T p1;
+	V p2;
+};

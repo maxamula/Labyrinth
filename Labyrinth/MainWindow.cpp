@@ -1,7 +1,4 @@
 #include "MainWindow.h"
-#include "RoundButton.h"
-#include <iostream>
-
 
 void DrawThread();
 LRESULT CALLBACK WindowFunc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
@@ -35,11 +32,10 @@ int  WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpszArgs, in
         return 1;
     }
     
-    hWnd = CreateWindow(L"Editor", L"Edit Graph", WS_OVERLAPPEDWINDOW, 100, 100, 1280, 720, HWND_DESKTOP, NULL, hInstance, NULL);
+    hWnd = CreateWindow(L"Editor", L"Edit Graph", WS_OVERLAPPED | WS_MINIMIZEBOX | WS_SYSMENU, 100, 100, 1280, 720, HWND_DESKTOP, NULL, hInstance, NULL);
     ShowWindow(hWnd, SW_SHOWNORMAL);
-    
-   
-    CloseHandle(CreateThread(0, 0, (LPTHREAD_START_ROUTINE)DrawThread, 0, 0, 0));
+
+    CloseHandle(CreateThread(0, 0, (LPTHREAD_START_ROUTINE)DrawThread, 0, 0, 0));			// Launch main drawing routine
 
 
     while (GetMessage(&msg, NULL, 0, 0))
@@ -112,6 +108,8 @@ LRESULT CALLBACK WindowFunc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPara
 					{
 						if (vertices[i]->GetType() != VERTEX_TYPE_EXIT)
 						{
+							if (graph->entrance == vertIndex)
+								graph->entrance = -1;
 							graph->exits.addLast(vertIndex);
 							vertices[i]->SetType(VERTEX_TYPE_EXIT);
 						}

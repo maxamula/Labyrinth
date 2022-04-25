@@ -42,7 +42,7 @@ Graph* LoadFromFile(WCHAR* szFilePath)
 	graph->adjMatrix = adjMatrix;
 
 	// Graph::traps
-
+	graph->traps = *(new Table<Edge, BYTE>(file + sizeof(MAZE_HEADER) + *((int*)(file + sizeof(MAZE_HEADER))) + 4 + (pHeader->verts * pHeader->verts)));
 
 	input.close();
 	return graph;
@@ -52,27 +52,18 @@ void SaveToFile(Graph* graph, WCHAR* szPath)
 {
 	int offset = 0;
 	char* buf = (char*)malloc(100000);
-
-	// Header
 	MAZE_HEADER header;
 	header.verts = graph->GetVerticesCount();
 	header.entrance = graph->entrance;
 	memcpy(buf, &header, sizeof(MAZE_HEADER));
 	offset += sizeof(MAZE_HEADER);
-
-	// Exits list
 	offset += graph->exits.CopyData(buf+offset);
-
-	// AdjMatrix
 	for (int i = 0; i < graph->GetVerticesCount(); i++)
 	{
 		memcpy(buf + offset, graph->adjMatrix[i], graph->GetVerticesCount());
 		offset += graph->GetVerticesCount();
 	}
-
-	// Traps
-	//graph->traps.CopyData(buf+offset, );
-
+	offset += graph->traps.CopyData(buf + offset);
 	std::fstream output(szPath, std::ios::out | std::ios::binary);
 	output.write(buf, offset);
 	output.close();

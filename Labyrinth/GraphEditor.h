@@ -1,7 +1,5 @@
 #pragma once
 #include "Labyrinth.h"
-#include "List.h"
-#include "MainWindow.h" 
 #include "GraphVertex.h"
 #include "Graph.h"
 #include "Direct3D.h"

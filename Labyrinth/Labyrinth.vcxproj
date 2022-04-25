@@ -156,6 +156,7 @@
     <ClCompile Include="List.cpp" />
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="RoundButton.cpp" />
+    <ClCompile Include="Stack.cpp" />
     <ClCompile Include="Table.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -169,6 +170,7 @@
     <ClInclude Include="List.h" />
     <ClInclude Include="MainWindow.h" />
     <ClInclude Include="RoundButton.h" />
+    <ClInclude Include="Stack.h" />
     <ClInclude Include="Table.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

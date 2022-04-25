@@ -2,6 +2,7 @@
 #include "List.h"
 #include "Edge.h"
 #include "Table.h"
+#include "Stack.h"
 #include <cstdlib>
 
 
@@ -12,14 +13,16 @@ public:
 	~Graph();
 public:
 	bool** adjMatrix;
-	BYTE** trapMatrix;					// TODO: replace trap matrix by trap table
 	Table<Edge, BYTE> traps;
-	char entrance = -1;
-	List<BYTE> exits;	
+	List<BYTE> exits;
+	char entrance = -1;	
 
 	BYTE GetVerticesCount();
+	BYTE GetClosestExit();
 private:
 	BYTE m_vertices;
+
+	BYTE DFS(Stack<BYTE>* pStack, bool* aVisited, unsigned short* pLen);
 };
 
 
