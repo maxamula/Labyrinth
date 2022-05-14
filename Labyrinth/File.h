@@ -1,7 +1,6 @@
 #pragma once
-#include "Graph.h"
-#include <iostream>
-#include <fstream>
+#include <windows.h>
 
-Graph* LoadFromFile(WCHAR* szFilePath);
-void SaveToFile(Graph* graph, WCHAR* szPath);
+extern bool bLoadFromFile;
+extern POINT* aPos;
+

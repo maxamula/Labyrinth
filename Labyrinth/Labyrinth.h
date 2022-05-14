@@ -1,8 +1,22 @@
 #pragma once
-#include "MainWindow.h"
-#include "Graph.h"
-#include "Table.h"
-#include "File.h"
-#include <iostream>
+#include "GraphBase.h"
+#include "HashMap.h"
 
-extern Graph* graph;
+class Labyrinth : public GraphBase
+{
+public:
+	Labyrinth(int verts);
+	~Labyrinth();
+public:
+	BYTE entrance = -1;
+	List<BYTE> exits;
+	HashMap<EDGE, BYTE> traps;
+	HashMap<EDGE, BYTE> time;
+
+	Path_t GetClosestPath();
+	BYTE GetSurvivalChance(Path_t path);
+	
+private:
+	Path_t GetMinDist(BYTE vert, BYTE* pMinDist);
+};
+

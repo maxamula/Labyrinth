@@ -1,2 +1,17 @@
-﻿  MainWindow.cpp
-  Labyrinth.vcxproj -> C:\Users\nullptr\source\repos\Labyrinth\Debug\Labyrinth.exe
+﻿  Main.cpp
+C:\Users\nullptr\Desktop\kursova\Labyrinth\Labyrinth\Main.cpp(7,20): warning C4305: аргумент: усечение из "double" в "K"
+          with
+          [
+              K=float
+          ]
+C:\Users\nullptr\Desktop\kursova\Labyrinth\Labyrinth\Main.cpp(8,20): warning C4305: аргумент: усечение из "double" в "K"
+          with
+          [
+              K=float
+          ]
+C:\Users\nullptr\Desktop\kursova\Labyrinth\Labyrinth\Main.cpp(9,30): warning C4305: аргумент: усечение из "double" в "K"
+          with
+          [
+              K=float
+          ]
+  Labyrinth.vcxproj -> C:\Users\nullptr\Desktop\kursova\Labyrinth\Debug\Labyrinth.exe

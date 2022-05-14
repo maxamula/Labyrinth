@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{d0e19f22-0bed-42ad-ae0e-a3d176933ef4}</ProjectGuid>
+    <ProjectGuid>{d5a60220-11f3-4505-8f74-85598a910051}</ProjectGuid>
     <RootNamespace>Labyrinth</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -72,21 +72,17 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\dxlib\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\dxlib\Lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\dxlib\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\dxlib\Lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\nullptr\Desktop\kursova\Labyrinth\Labyrinth\dxlib\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\nullptr\Desktop\kursova\Labyrinth\Labyrinth\dxlib\Lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\dxlib\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\nullptr\source\repos\Labyrinth\Labyrinth\dxlib\Lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -94,7 +90,6 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -123,6 +118,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Users\nullptr\Desktop\kursova\Labyrinth\Labyrinth\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -147,31 +143,49 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Direct3D.cpp" />
-    <ClCompile Include="Edge.cpp" />
+    <ClCompile Include="Editor.cpp" />
     <ClCompile Include="File.cpp" />
-    <ClCompile Include="Graph.cpp" />
-    <ClCompile Include="GraphEditor.cpp" />
+    <ClCompile Include="GraphBase.cpp" />
     <ClCompile Include="GraphVertex.cpp" />
+    <ClCompile Include="HashMap.cpp" />
+    <ClCompile Include="imgui\imgui.cpp" />
+    <ClCompile Include="imgui\imgui_demo.cpp" />
+    <ClCompile Include="imgui\imgui_draw.cpp" />
+    <ClCompile Include="imgui\imgui_impl_dx9.cpp" />
+    <ClCompile Include="imgui\imgui_impl_win32.cpp" />
+    <ClCompile Include="imgui\imgui_tables.cpp" />
+    <ClCompile Include="imgui\imgui_widgets.cpp" />
+    <ClCompile Include="Input.cpp" />
     <ClCompile Include="Labyrinth.cpp" />
     <ClCompile Include="List.cpp" />
+    <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainWindow.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="RoundButton.cpp" />
     <ClCompile Include="Stack.cpp" />
-    <ClCompile Include="Table.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Direct3D.h" />
-    <ClInclude Include="Edge.h" />
+    <ClInclude Include="Editor.h" />
     <ClInclude Include="File.h" />
-    <ClInclude Include="Graph.h" />
-    <ClInclude Include="GraphEditor.h" />
+    <ClInclude Include="GraphBase.h" />
     <ClInclude Include="GraphVertex.h" />
+    <ClInclude Include="HashMap.h" />
+    <ClInclude Include="imgui\imconfig.h" />
+    <ClInclude Include="imgui\imgui.h" />
+    <ClInclude Include="imgui\imgui_impl_dx9.h" />
+    <ClInclude Include="imgui\imgui_impl_win32.h" />
+    <ClInclude Include="imgui\imgui_internal.h" />
+    <ClInclude Include="imgui\imstb_rectpack.h" />
+    <ClInclude Include="imgui\imstb_textedit.h" />
+    <ClInclude Include="imgui\imstb_truetype.h" />
+    <ClInclude Include="Input.h" />
     <ClInclude Include="Labyrinth.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="MainWindow.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="RoundButton.h" />
     <ClInclude Include="Stack.h" />
-    <ClInclude Include="Table.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

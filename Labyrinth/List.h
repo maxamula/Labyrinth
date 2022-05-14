@@ -1,4 +1,5 @@
 #pragma once
+#include <string.h> //memcpy
 #include <windows.h>
 
 template <typename T>
@@ -28,12 +29,12 @@ public:
 
 public:
 
-	int size()
+	int Size()
 	{
 		return m_size;
 	}
 
-	void addLast(T item)
+	void AddLast(T item)
 	{
 		m_size++;
 		if (m_size > m_capacity) //if overflow
@@ -49,7 +50,7 @@ public:
 		memcpy(&m_data[m_size - 1], &item, sizeof(T)); //copy item
 	}
 
-	void addFirst(T item)
+	void AddFirst(T item)
 	{
 		m_size++;
 		if (m_size > m_capacity)
@@ -68,7 +69,7 @@ public:
 		}
 	}
 
-	void removeLast()
+	void RemoveLast()
 	{
 		if (m_size == 0)
 			return;
@@ -83,7 +84,7 @@ public:
 		}
 	}
 
-	void removeFirst()
+	void RemoveFirst()
 	{
 		if (m_size == 0)
 			return;
@@ -107,21 +108,22 @@ public:
 	{
 		for (int i = 0; i < m_size; i++)
 		{
-			if (this->operator[](i) == item)
+			auto nextItem = this->operator[](i);
+			if (memcmp(&nextItem, &item, sizeof(item)) == 0)
 			{
-				if (m_capacity == (m_size-1)* 2)
+				if (m_capacity == (m_size - 1) * 2)
 				{
 					T* pData = (T*)malloc((m_capacity / 2) * sizeof(T));
-					memcpy(pData, m_data, (i)*sizeof(T));
- 					memcpy(&pData[i], &m_data[i+1], (m_size - i - 1) * sizeof(T));
+					memcpy(pData, m_data, (i) * sizeof(T));
+					memcpy(&pData[i], &m_data[i + 1], (m_size - i - 1) * sizeof(T));
 					free(m_data);
-					m_size --;
+					m_size--;
 					m_capacity /= 2;
 					m_data = pData;
 				}
 				else
 				{
-					memcpy(&m_data[i], &m_data[i+1], (m_size-i) * sizeof(T));
+					memcpy(&m_data[i], &m_data[i + 1], (m_size - i) * sizeof(T));
 					m_size--;
 				}
 			}
@@ -132,8 +134,6 @@ public:
 	{
 		if (index >= 0 && index < m_size)
 			return m_data[index];
-		//else
-		//	return NULL;
 	}
 
 	void toArray(T** ppArray)
