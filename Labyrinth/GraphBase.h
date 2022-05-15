@@ -9,7 +9,7 @@ typedef List<BYTE> Path_t;
 class GraphBase
 {
 public:
-	GraphBase(int verts);
+	GraphBase(BYTE verts);
 	~GraphBase();
 public:
 	bool** adjMat;

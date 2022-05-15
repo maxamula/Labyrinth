@@ -5,7 +5,7 @@
 class Labyrinth : public GraphBase
 {
 public:
-	Labyrinth(int verts);
+	Labyrinth(BYTE verts);
 	~Labyrinth();
 public:
 	BYTE entrance = -1;

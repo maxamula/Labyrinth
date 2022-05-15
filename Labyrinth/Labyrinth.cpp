@@ -1,6 +1,6 @@
 #include "Labyrinth.h"
 
-Labyrinth::Labyrinth(int verts) : GraphBase(verts)
+Labyrinth::Labyrinth(BYTE verts) : GraphBase(verts)
 {
 	for (BYTE i = 0; i < this->GetVerticesCount(); i++)
 	{

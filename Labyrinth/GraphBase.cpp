@@ -1,6 +1,6 @@
 #include "GraphBase.h"
 
-GraphBase::GraphBase(int verts)
+GraphBase::GraphBase(BYTE verts)
 {
 	m_vertices = verts;
 	adjMat = (bool**)malloc(verts*sizeof(bool*));

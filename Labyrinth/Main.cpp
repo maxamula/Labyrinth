@@ -2,6 +2,7 @@
 #pragma comment(lib, "d3dx9.lib")
 #pragma comment(lib, "Shlwapi.lib")
 #include <iostream>
+#include "File.h"
 #include "Editor.h"
 #include "Labyrinth.h" //d
 
@@ -14,7 +15,7 @@ int main()
     std::cin >> ch;
     if (ch == 'y')
     {
-        // Load Maze
+        labyrinth = LoadFromFile((WCHAR*)L"C:\\Users\\nullptr\\Desktop\\graph.maze");
         goto Edit;
     }
     std::cout << "Enter number of vertices (4-45)\n";
@@ -24,5 +25,6 @@ int main()
 Edit:
     system("cls");
     ShowEditor(labyrinth);
+    SaveToFile(labyrinth, (WCHAR*)L"C:\\Users\\nullptr\\Desktop\\graph.maze");
     std::cout << "Hello World!\n";
 }
