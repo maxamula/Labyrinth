@@ -101,6 +101,9 @@
     <ClCompile Include="Input.cpp">
       <Filter>Исходные файлы\GUI</Filter>
     </ClCompile>
+    <ClCompile Include="Queue.cpp">
+      <Filter>Исходные файлы\Data structures</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="List.h">
@@ -165,6 +168,9 @@
     </ClInclude>
     <ClInclude Include="Input.h">
       <Filter>Файлы заголовков\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Queue.h">
+      <Filter>Файлы заголовков\Data structures</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

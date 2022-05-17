@@ -4,7 +4,7 @@
 #include <queue>		//d
 #include <windows.h>
 
-typedef List<BYTE> Path_t;
+typedef List<BYTE> Path;
 
 class GraphBase
 {

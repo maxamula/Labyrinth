@@ -37,7 +37,7 @@ void DrawMenu(Labyrinth* graph)
 		{
 			if (graph->adjMat[i][j])
 			{
-				char szEdge[13];
+				char szEdge[20];
 				sprintf_s(szEdge, "Edge %d -> %d", i, j);
 				PaddedText(szEdge, 0, 3);
 			}
@@ -52,8 +52,8 @@ void DrawMenu(Labyrinth* graph)
 		{
 			if (graph->adjMat[i][j])
 			{
-				char id[14] = "S.##time";
-				char num[5];
+				char id[30] = "S.##time";
+				char num[15];
 				sprintf_s(num, "%d%d", i, j);
 				strcat_s(id, num);
 				ImGui::DragScalar(id, ImGuiDataType_U8, graph->time.GetP(EDGE{ i, j }), 0.1, &minvalue, &maxtime, (const char*)0, ImGuiSliderFlags_AlwaysClamp);
@@ -68,8 +68,8 @@ void DrawMenu(Labyrinth* graph)
 		{
 			if (graph->adjMat[i][j])
 			{
-				char id[14] = "%##chance";
-				char num[5];
+				char id[30] = "%##chance";
+				char num[15];
 				sprintf_s(num, "%d%d", i, j);
 				strcat_s(id, num);
 				ImGui::DragScalar(id, ImGuiDataType_U8, graph->traps.GetP(EDGE{ i, j }), 0.3, &minvalue, &maxchance, (const char*)0, ImGuiSliderFlags_AlwaysClamp);

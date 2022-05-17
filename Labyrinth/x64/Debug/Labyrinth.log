@@ -1,7 +1,5 @@
-﻿  File.cpp
-C:\Users\nullptr\Desktop\kursova\Labyrinth\Labyrinth\File.cpp(16,16): warning C4244: инициализация: преобразование "std::streamoff" в "int", возможна потеря данных
-C:\Users\nullptr\Desktop\kursova\Labyrinth\Labyrinth\File.cpp(81,116): warning C4244: аргумент: преобразование "double" в "size_t", возможна потеря данных
-C:\Users\nullptr\Desktop\kursova\Labyrinth\Labyrinth\File.cpp(82,58): warning C4838: Преобразование из "int" в "BYTE" требует сужающего преобразования.
-C:\Users\nullptr\Desktop\kursova\Labyrinth\Labyrinth\List.h(137): warning C4715: List<GraphVertex *>::operator[]: значение возвращается не при всех путях выполнения
+﻿  Labyrinth.cpp
 C:\Users\nullptr\Desktop\kursova\Labyrinth\Labyrinth\List.h(137): warning C4715: List<unsigned char>::operator[]: значение возвращается не при всех путях выполнения
+C:\Users\nullptr\Desktop\kursova\Labyrinth\Labyrinth\Queue.h(37): warning C4715: Queue<unsigned char>::Front: значение возвращается не при всех путях выполнения
+C:\Users\nullptr\Desktop\kursova\Labyrinth\Labyrinth\Queue.h(63): warning C4715: Queue<unsigned char>::operator[]: значение возвращается не при всех путях выполнения
   Labyrinth.vcxproj -> C:\Users\nullptr\Desktop\kursova\Labyrinth\x64\Debug\Labyrinth.exe

@@ -5,11 +5,14 @@
 #include "File.h"
 #include "Editor.h"
 #include "Labyrinth.h" //d
+#include "Queue.h"
 
 Labyrinth* labyrinth;
 
 int main()
 {
+    Queue<int> q(4);
+    q.Pop();
     std::cout << "Do you want to open maze from file?(y/n)\n";
     char ch = 0;
     std::cin >> ch;
@@ -25,6 +28,12 @@ int main()
 Edit:
     system("cls");
     ShowEditor(labyrinth);
-    SaveToFile(labyrinth, (WCHAR*)L"C:\\Users\\nullptr\\Desktop\\graph.maze");
-    std::cout << "Hello World!\n";
+    std::cout << "1. Path to the closest exit:\n";
+    auto path = labyrinth->GetClosestVertPath();
+    for (int i = 0; i < path.Size(); i++)
+    {
+        std::cout << (int)path[i];
+        if (i != path.Size() - 1)
+            std::cout << " => ";
+    }
 }

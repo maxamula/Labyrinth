@@ -161,6 +161,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="Queue.cpp" />
     <ClCompile Include="RoundButton.cpp" />
     <ClCompile Include="Stack.cpp" />
   </ItemGroup>
@@ -184,6 +185,7 @@
     <ClInclude Include="List.h" />
     <ClInclude Include="MainWindow.h" />
     <ClInclude Include="Menu.h" />
+    <ClInclude Include="Queue.h" />
     <ClInclude Include="RoundButton.h" />
     <ClInclude Include="Stack.h" />
   </ItemGroup>

@@ -24,7 +24,7 @@ public:
 
 	~List()
 	{
-		free(m_data); //release mem space
+		//free(m_data); //release mem space
 	}
 
 public:

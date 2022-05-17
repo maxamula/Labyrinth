@@ -77,7 +77,7 @@ void ProcessInput(WPARAM wParam)
 
 	if (wParam == VK_F2)
 	{
-		//SaveToFile(graph, (WCHAR*)L"C:\\Users\\nullptr\\Desktop\\graph.maze");
+		SaveToFile(graph, (WCHAR*)L"C:\\Users\\nullptr\\Desktop\\graph.maze");
 	}
 
 	if (wParam == VK_F1)		// Open menu

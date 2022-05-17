@@ -1,6 +1,7 @@
 #pragma once
 #include "GraphBase.h"
 #include "HashMap.h"
+#include "Queue.h"
 
 class Labyrinth : public GraphBase
 {
@@ -13,10 +14,10 @@ public:
 	HashMap<EDGE, BYTE> traps;
 	HashMap<EDGE, BYTE> time;
 
-	Path_t GetClosestPath();
-	BYTE GetSurvivalChance(Path_t path);
+	Path GetClosestVertPath();
+	BYTE GetSurvivalChance(Path path);
 	
 private:
-	Path_t GetMinDist(BYTE vert, BYTE* pMinDist);
+	Path GetMinDist(BYTE vert, BYTE* pMinDist);
 };
 
